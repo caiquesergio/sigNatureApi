@@ -6,6 +6,6 @@ services:
     environment:
       - POSTGRES_USER=unip
       - POSTGRES_PASSWORD=unipeiros
-      - POSTGRES_DB=mydb
+      - POSTGRES_DB=signature
     ports:
       - "54320:5432"
