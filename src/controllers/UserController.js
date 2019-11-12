@@ -6,7 +6,7 @@ module.exports = {
     // header Usuario é autenticado e etc, bool, updated e etc
     async store(req, res) {
         const { name, email, genre, birth } = req.body;
-        console.log(req)
+        console.log(req);
         const user = await User.create({name, email, genre, birth});
 
         return res.json(user);
