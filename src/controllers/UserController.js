@@ -10,5 +10,13 @@ module.exports = {
         const user = await User.create({name, email, genre, birth});
 
         return res.json(user);
+    },
+
+    async addBiometry(req, res) {
+        console.log(req.file);
+        if (!req.file) {
+            return res.status(500);
+        }
+        res.json({fileUrl: req.file.filename});
     }
 };
