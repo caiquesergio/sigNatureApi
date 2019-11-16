@@ -1,11 +1,8 @@
 version: "3"
+
 services:
-  db:
-    image: "postgres"
-    container_name: "database_signature"
-    environment:
-      - POSTGRES_USER=unip
-      - POSTGRES_PASSWORD=unipeiros
-      - POSTGRES_DB=signature
+  app:
+    build: .
     ports:
-      - "54320:5432"
+      - "3333:3333"
+    command: yarn prod
