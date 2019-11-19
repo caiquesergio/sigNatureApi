@@ -8,7 +8,7 @@ function createJWT(user) {
 }
 
 function verifyJWT(req, res, next) {
-    if (req.url === '/users/login' || req.url === '/login') return next();
+    if (req.url === '/users/login' || req.url === '/login' || req.url === '/users') return next();
 
     const token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({auth: false, message: 'No token provided.'});

@@ -28,18 +28,19 @@ module.exports = {
     },
 
     async login(req, res) {
-        const username = req.body.email;
+        const email = req.body.email;
         const password = req.body.password;
 
-        User.findOne({where: {email: username}})
+        User.findOne({where: {email: email}})
             .then(function (user) {
-                return Bycrpt.compare(password, user.password);
+                return {auth: Bycrpt.compare(password, user.password), user}
             })
-            .then(function (samePassword) {
-                if (!samePassword) res.status(403).send();
-                const token = createJWT(username);
-                return res.header("x-auth-token", token).send({
-                    email: username
+            .then(function (data) {
+                if (!data.auth) res.status(403).send();
+                const token = createJWT(email);
+                return res.header("x-auth-token", token).status(200).send({
+                    email: email,
+                    user: data.user.name
                 });
             })
             .catch(function (error) {
@@ -56,12 +57,13 @@ module.exports = {
     },
 
     async authBiometry(req, res) {
-        const options = {args: ["comando", "andre"]};
+        const options = {args: ["dedo1", "dedo2"]};
 
-        PythonShell.run('pythun', options, function (err, results) {
+        PythonShell.run('../../scripts/python/app.py', options, function (err, results) {
             if (err) throw err;
             console.log(JSON.stringify(results[0]));
             console.log('results: %j', results);
+            res.send(results)
         });
     }
 };

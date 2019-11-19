@@ -10,8 +10,9 @@ routes.all('/*', verifyJWT);
 
 routes.post('/users', UserController.store);
 routes.post('/users/login', UserController.login);
+routes.post('/users/authBiometry', UserController.authBiometry);
 routes.post('/users/addBiometry', Multer.single('file'), UserController.addBiometry);
 routes.post('/petitions', PetitionsController.createPetition);
 routes.get('/petitions', PetitionsController.getPetitions);
 
-module.exports = routes; 
+module.exports = routes;
