@@ -17,6 +17,10 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        password: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
         genre: {
           type: Sequelize.STRING,
           allowNull: false,
@@ -37,12 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
       return queryInterface.dropTable('users');
-    */
   }
 };

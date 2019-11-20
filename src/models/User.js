@@ -8,6 +8,7 @@ class User extends Model {
             genre: DataTypes.STRING,
             //Sun Nov 10 2019 22:46:09 GMT-0200 (GMT-02:00) ->
             birth: DataTypes.DATE,
+            password: DataTypes.STRING
         }, {
             sequelize
         })
